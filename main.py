@@ -16,7 +16,7 @@ from monitor import *
 """
 Change These Variables, some functions won't work while running in docker!
 """
-source_list = [0]
+source_list = ['rtsp://admin:HURMOG@frp-egg.top:34219/h264/ch1/main/av_stream']
 
 # Set both these to False in order to use default image sizes
 UTILIZE_ALL_MONITOR_SPACE = True # Set this to maximize visual size of all images
