@@ -1,5 +1,7 @@
 import cv2
 from threading import Thread
+
+import stat_m
 from utils import visualization_utils as vis_util
 import numpy as np
 import statistics
@@ -132,12 +134,12 @@ class Vizualise(Thread):
                         else:
                             # Save amount
                             self.shared_variables.number_of_persons = amount
-
+                        stat_m.add_record(amount, self.shared_variables.OutputFrame_list[self.id].frame)
                     if self.pos is not None:
                         frame = cv2.resize(frame,(self.pos[2]-self.pos[0], self.pos[3]-self.pos[1]) )
 
                     cv2.putText(frame, str(self.shared_variables.number_of_persons), (10,150), cv2.FONT_HERSHEY_SIMPLEX, 5, 255,10, cv2.LINE_AA)
-                    cv2.imshow(str(self.id), frame)
+                    # cv2.imshow(str(self.id), frame)
 
                     if self.moved is False and self.pos is not None:
 

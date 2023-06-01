@@ -16,7 +16,8 @@ from monitor import *
 """
 Change These Variables, some functions won't work while running in docker!
 """
-source_list = ['rtsp://admin:HURMOG@frp-egg.top:34219/h264/ch1/main/av_stream']
+# source_list = ['rtsp://admin:HURMOG@frp-egg.top:34219/h264/ch1/main/av_stream']
+source_list = [0]
 
 # Set both these to False in order to use default image sizes
 UTILIZE_ALL_MONITOR_SPACE = True # Set this to maximize visual size of all images
@@ -37,12 +38,13 @@ DETECTION_OPTIMIZE_SIZE = [640,480] # Set size of images before prediction, Set 
 path = "/proc/" + str(os.getpid()) + "/cgroup"
 
 def is_docker():
-  if not os.path.isfile(path): return False
-  with open(path) as f:
-    for line in f:
-      if re.match("\d+:[\w=]+:/docker(-[ce]e)?/\w+", line):
-        return True
-    return False
+    return True
+  # if not os.path.isfile(path): return False
+  # with open(path) as f:
+  #   for line in f:
+  #     if re.match("\d+:[\w=]+:/docker(-[ce]e)?/\w+", line):
+  #       return True
+  #   return False
 
 
 def create_instances( source_list , monitor_list):
